@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+    <title>Sign Up | Coffee House</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container main">
+            <div class="row">
+                <div class="col-md-6 side-image">
+                    <div class="text">
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="input-box">
+                        <header>Create Account</header>
+                        <form id="signupForm" onsubmit="registerUser(event)">
+                            <div class="input-field">
+                                <label for="name">Name</label>
+                                <input type="text" class="input" id="name" required autocomplete="off">
+                                <span id="nameError" class="error"></span>
+                            </div>
+                            <div class="input-field">
+                                <label for="email">Email</label>
+                                <input type="email" class="input" id="email" required autocomplete="off">
+                                <span id="emailError" class="error"></span>
+                            </div>
+                            <div class="input-field">
+                                <label for="password">Password</label>
+                                <input type="password" class="input" id="password" required>
+                                <span id="passwordError" class="error"></span>
+                            </div>
+                            <div class="signin">
+                                <input type="submit" class="submit" value="Sign Up">
+                            </div>
+                        </form>
+                        <div class="signin">
+                            <span>Already have an Account? <a href="login.html">Log in Here</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </script>
+</body>
+</html>
+
+<script>
+ function registerUser(event) {
+    event.preventDefault();
+
+    // Get the name input value
+    const nameInput = document.getElementById('name');
+    const name = nameInput.value;
+
+    // Store the name in local storage
+    localStorage.setItem('profileName', name);
+
+    // Redirect to the dashboard.html page
+    window.location.href = 'dashboard.html';
+}
+
+</script>
