@@ -732,91 +732,117 @@ document.getElementById("menuItems").style.display = "flex";
 
 function addToCart(itemName, itemPrice) {
   var table = document.getElementById("cartTable");
-  
+
   // Generate a unique ID for the table row
   var itemId = "item_" + Math.random().toString(36).substr(2, 9);
-  
+
   // Create a new row for the item
   var row = document.createElement("tr");
   row.id = itemId;
-  
+
   // Create cells for the item details
   var nameCell = document.createElement("td");
   nameCell.textContent = itemName;
-  
+
   var sizeCell = document.createElement("td");
   sizeCell.textContent = "Medium";
-  
+
   var quantityCell = document.createElement("td");
   quantityCell.textContent = "1";
   quantityCell.classList.add("quantity"); // Add a class to the quantity cell for easier selection
-  
+
   var priceCell = document.createElement("td");
   priceCell.textContent = itemPrice;
   priceCell.classList.add("price"); // Add a class to the price cell for easier selection
-  
+
   var actionCell = document.createElement("td");
-  
+
   // Create buttons for adjusting quantity and removing the item
   var adjustButton = document.createElement("button");
   adjustButton.textContent = "Adjust";
   adjustButton.classList.add("btn", "btn-primary");
-  adjustButton.onclick = function() {
+  adjustButton.onclick = function () {
     adjustCart(itemId);
   };
-  
+
   var removeButton = document.createElement("button");
   removeButton.textContent = "Remove";
   removeButton.classList.add("btn", "btn-primary");
-  removeButton.onclick = function() {
+  removeButton.onclick = function () {
     removeItem(itemId);
   };
 
   // Append the buttons to the action cell
   actionCell.appendChild(adjustButton);
   actionCell.appendChild(removeButton);
-  
+
   row.appendChild(nameCell);
   row.appendChild(sizeCell);
   row.appendChild(quantityCell);
   row.appendChild(priceCell);
   row.appendChild(actionCell);
-  
+
   table.querySelector("tbody").appendChild(row);
-  
+
   // Update the total
   total += parseFloat(itemPrice);
-  
+
   // Update the total display
   updateTotal();
 }
+
 function adjustCart(itemId) {
   // Prompt the user to enter a new quantity
   var newQuantity = prompt("Enter the new quantity:");
-  
+
   // Validate the input
   if (newQuantity === null || newQuantity === "") {
     return; // If the user cancels or doesn't enter a value, do nothing
   }
-  
+
   // Convert the new quantity to a number
   newQuantity = parseInt(newQuantity);
-  
+
   // Find the table row for the item
   var row = document.getElementById(itemId);
-  
+
   // Find the quantity cell and update the value
   var quantityCell = row.querySelector(".quantity");
   quantityCell.textContent = newQuantity;
-  
+
   // Find the price cell and calculate the new price
   var priceCell = row.querySelector(".price");
   var itemPrice = parseFloat(priceCell.textContent);
   var newPrice = itemPrice * newQuantity;
   priceCell.textContent = newPrice.toFixed(2);
-  
+
   // Update the total
   updateTotal();
+}
+
+function removeItem(itemId) {
+  // Find the table row for the item
+  var row = document.getElementById(itemId);
+
+  // Remove the row from the table
+  row.parentNode.removeChild(row);
+
+  // Update the total
+  updateTotal();
+}
+
+// Function to update the total
+function updateTotal() {
+  // Calculate the total price
+  var totalPrice = 0;
+  var priceCells = document.querySelectorAll(".price");
+
+  priceCells.forEach(function (cell) {
+    totalPrice += parseFloat(cell.textContent);
+  });
+
+  // Update the total display
+ 
 }
  function searchMenu() {
             var input, filter, menuItems, item, i, txtValue;
