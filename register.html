@@ -63,7 +63,7 @@
 </body>
 </html>
 <script>
-    const profileLink = document.getElementById('profileLink');
+     const profileLink = document.getElementById('profileLink');
     const registeredInformation = {
         name: "",       // Store the registered name
         email: "",      // Store the registered email
@@ -95,6 +95,9 @@
                 "Phone: " + registeredInformation.phone + "\n" +
                 "Gender: " + registeredInformation.gender
             );
+
+            // Redirect to the dashboard page
+            window.location.href = "dashboard.html";
         } else {
             // Prompt the user to complete the registration first
             alert("Please complete the registration first.");
